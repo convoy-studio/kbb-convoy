@@ -24,12 +24,18 @@ class AppTemplate extends BaseComponent {
 		AppStore.on(AppConstants.WINDOW_RESIZE, this.resize)
 		dom.event(window, 'mousemove', this.mouseMove)
 
+		this.dot = {
+			el: dom.select('#mouse-dot', document)
+		}
+
 		this.scene = new THREE.Scene();
 
         this.camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000 );
         this.camera.position.z = 800;
 
-        this.renderer = new THREE.WebGLRenderer();
+        this.renderer = new THREE.WebGLRenderer({
+        	antialias: true
+        });
         this.renderer.setSize( window.innerWidth, window.innerHeight );
         dom.tree.add(this.element, this.renderer.domElement)
 
@@ -43,11 +49,7 @@ class AppTemplate extends BaseComponent {
         this.meatParticles = MeatParticles(this.scene)
 
         var planeGeometry = new THREE.PlaneGeometry( 1200, 400, 10, 10 );
-        // var planeTexture = Utils.LoadTexture("red-color-gradient-wallpaper-3.jpg")
-        // var planeTexture = Utils.LoadTexture("landscape-desert-sand-dune-clear-sky-shadow-yellow-nature-1920x1200.jpg")
-        // var planeTexture = Utils.LoadTexture("flying-over-namibia.jpg")
         var planeTexture = Utils.LoadTexture("gradient-sky-1172968.jpg")
-        // var planeTexture = Utils.LoadTexture("Monotone-Sunset-Sky.jpg")
         var planeMaterial = new THREE.MeshBasicMaterial({
         	color: 0xffffff,
         	map: planeTexture,
@@ -91,6 +93,18 @@ class AppTemplate extends BaseComponent {
         	{ id: AppConstants.KEBAB.PARTICLE, src: "mesh/meat-particle.js" },
         ]
         this.loadAssets(manifest)
+
+        Leap.loop((frame)=> {
+        	var hand = frame.hands[0]
+			if(hand) {
+				let size = 50
+				let x = (window.innerWidth * 0.45) + hand.palmPosition[0]
+				let y = (window.innerHeight * 0.9) - hand.palmPosition[1]
+				this.mouse.x = (x / window.innerWidth) * 2 - 1
+				this.mouse.y = -(y / window.innerHeight) * 2 + 1
+				Utils.Translate(this.dot.el, x - (size/2), y - (size/2), 1)
+			}
+		});
 
         this.animate()
 		super.componentDidMount()
@@ -190,7 +204,6 @@ class AppTemplate extends BaseComponent {
         this.kebab.rotation.y += 0.006
 
         this.raycaster.setFromCamera( this.mouse, this.camera );
-
 
         if(this.kebabBase != undefined) {
         	var intersections = this.raycaster.intersectObjects( [this.kebabBase] );

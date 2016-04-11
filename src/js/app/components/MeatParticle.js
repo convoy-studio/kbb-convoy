@@ -1,32 +1,25 @@
 import Utils from 'Utils'
 
-export default (container)=> {
+export default (material)=> {
 	var scope;
-	
-	var texture = Utils.LoadTexture("Shawarma-diff.jpg")
-	var diffuseColor = new THREE.Color( 0xffffff )
-	var metalness = 0.5
-	var roughness = 1.0
-	var mesh;
-	var material = new THREE.MeshStandardMaterial({
-		map: texture,
-		color: diffuseColor,
-		metalness: metalness,
-		roughness: roughness
-	})
+	var mesh = new THREE.Mesh()
+	mesh.material = material
+	mesh.position.x = 300
+	mesh.velocity = new THREE.Vector3(0, 0, 0)
+	mesh.offset = new THREE.Vector3(0, 0, 0)
 
 	scope = {
-		create: (geometry, parent) => {
-			mesh = new THREE.Mesh()
+		geometryAddTo: (geometry, parent) => {
 			mesh.geometry = geometry
-			mesh.material = material
-			mesh.position.x = 300
 			parent.add(mesh)
-			return mesh
 		},
+		position: mesh.position,
+		rotation: mesh.rotation,
+		scale: mesh.scale,
+		velocity: mesh.velocity,
+		offset: mesh.offset,
 		update: ()=> {
-			// if(mesh)
-			// mesh.position.set(scope.position.x, scope.position.y, scope.position.z)
+
 		}
 	}
 
