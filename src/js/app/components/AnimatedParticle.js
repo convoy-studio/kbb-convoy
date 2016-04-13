@@ -1,5 +1,5 @@
 
-export default (parent, texture, geometry, animator)=> {
+export default (parent, texture, geometry, animator, scale)=> {
 	var scope;
 	var clock = new THREE.Clock();
 	
@@ -11,11 +11,11 @@ export default (parent, texture, geometry, animator)=> {
 		side: THREE.DoubleSide
 	} );
 	let mesh = new THREE.Mesh(geometry, material);
-	let scale = 300
 	mesh.scale.set(scale, scale, scale)
 	parent.add(mesh);
 
 	scope = {
+		scale: scale,
 		mesh: mesh,
 		update: ()=> {
 			var delta = clock.getDelta(); 

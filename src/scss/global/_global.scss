@@ -43,3 +43,14 @@ html {
     @include opacity(0.5);
 }
 
+#messages {
+    position: absolute;
+    font-family: Eskindar;
+    color: white;
+    font-size: 200px;
+    text-transform: uppercase;
+    & > div {
+        position: absolute;
+    }
+}
+

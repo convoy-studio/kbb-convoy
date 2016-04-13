@@ -7,6 +7,7 @@ import Materials from 'Materials'
 import Utils from 'Utils'
 import GUI from 'GUI'
 import MeatParticles from 'MeatParticles'
+import Messages from 'Messages'
 
 class AppTemplate extends BaseComponent {
 	constructor() {
@@ -31,7 +32,7 @@ class AppTemplate extends BaseComponent {
 		this.scene = new THREE.Scene();
 
         this.camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000 );
-        this.camera.position.z = 800;
+        this.camera.position.z = 900;
 
         this.renderer = new THREE.WebGLRenderer({
         	antialias: true
@@ -42,6 +43,7 @@ class AppTemplate extends BaseComponent {
         this.raycaster = new THREE.Raycaster();
         this.mouse = new THREE.Vector2();
         this.intersection = undefined
+        this.intersectionCounter = 0
 
         this.kebab = new THREE.Object3D()
         this.scene.add(this.kebab)
@@ -105,6 +107,8 @@ class AppTemplate extends BaseComponent {
 				Utils.Translate(this.dot.el, x - (size/2), y - (size/2), 1)
 			}
 		});
+
+		this.messages = Messages(dom.select('#messages', document))
 
         this.animate()
 		super.componentDidMount()
@@ -210,6 +214,12 @@ class AppTemplate extends BaseComponent {
         	this.intersection = ( intersections.length ) > 0 ? intersections[ 0 ] : null;
         }
 
+        if(this.intersection) this.intersectionCounter++
+        if(this.intersectionCounter > 350) {
+        	this.messages.showMsg()
+        	this.intersectionCounter = 0
+        }
+
         this.meatParticles.update(this.intersection)
         this.renderer.render( this.scene, this.camera );
 	}
@@ -217,6 +227,7 @@ class AppTemplate extends BaseComponent {
 		this.camera.aspect = window.innerWidth / window.innerHeight;
 	    this.camera.updateProjectionMatrix();
 	    this.renderer.setSize( window.innerWidth, window.innerHeight );
+	    this.messages.resize()
 
 		super.resize()
 	}

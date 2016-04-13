@@ -1,5 +1,5 @@
 @include font-face('FuturaMedium', '../font/futura/FuturaBT-Medium');
-@include font-face('Hobo', '../font/hobo/HoboStd');
+@include font-face('Eskindar', '../font/eskindar/eskindar');
 
 #font-charger {
 	left: -10000px;
@@ -9,7 +9,7 @@
 	#FuturaMedium {
 		font-family: 'FuturaMedium';
 	}
-	#Hobo {
-		font-family: 'Hobo';
+	#Eskindar {
+		font-family: 'Eskindar';
 	}
 }
