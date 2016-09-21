@@ -7,102 +7,11 @@ export default (container)=> {
 	let parent = new THREE.Object3D()
 	let intersection;
 
-	const MEAT_PARTICLES_NUM = 80
+	const MEAT_PARTICLES_NUM = 100
 	let meatTexture = Utils.LoadTexture("Shawarma-diff.jpg")
 	let meatDiffuseColor = new THREE.Color( 0xffffff )
 	let meatMetalness = 0.5
 	let meatRoughness = 1.0
-
-	// let animTextures = [
-	// 	{
-	// 		tex: new THREE.ImageUtils.loadTexture( 'image/textures/saliormoon.png' ),
-	// 		horizontal: 4, 
-	// 		vertical: 1, 
-	// 		total: 4, 
-	// 		duration: 150,
-	// 		scale: 300
-	// 	},
-	// 	{
-	// 		tex: new THREE.ImageUtils.loadTexture( 'image/textures/favorite-icon.png' ),
-	// 		horizontal: 4, 
-	// 		vertical: 1, 
-	// 		total: 4, 
-	// 		duration: 150,
-	// 		scale: 300
-	// 	},
-	// 	{
-	// 		tex: new THREE.ImageUtils.loadTexture( 'image/textures/spiral_heart_moon_rod_by_sayurixsama-d506px0 (1).png' ),
-	// 		horizontal: 4, 
-	// 		vertical: 1, 
-	// 		total: 4, 
-	// 		duration: 150,
-	// 		scale: 300
-	// 	},
-	// 	{
-	// 		tex: new THREE.ImageUtils.loadTexture( 'image/textures/döner.png' ),
-	// 		horizontal: 4, 
-	// 		vertical: 1, 
-	// 		total: 4, 
-	// 		duration: 150,
-	// 		scale: 300
-	// 	},
-	// 	{
-	// 		tex: new THREE.ImageUtils.loadTexture( 'image/textures/nordine.png' ),
-	// 		horizontal: 4, 
-	// 		vertical: 1, 
-	// 		total: 4, 
-	// 		duration: 150,
-	// 		scale: 300
-	// 	},
-	// 	{
-	// 		tex: new THREE.ImageUtils.loadTexture( 'image/textures/crystal-star-icon.png' ),
-	// 		horizontal: 4, 
-	// 		vertical: 1, 
-	// 		total: 4, 
-	// 		duration: 150,
-	// 		scale: 300
-	// 	},
-	// 	{
-	// 		tex: new THREE.ImageUtils.loadTexture( 'image/textures/cat.png' ),
-	// 		horizontal: 4, 
-	// 		vertical: 1, 
-	// 		total: 4, 
-	// 		duration: 150,
-	// 		scale: 300
-	// 	},
-	// 	{
-	// 		tex: new THREE.ImageUtils.loadTexture( 'image/textures/picachu.png' ),
-	// 		horizontal: 4, 
-	// 		vertical: 1, 
-	// 		total: 4, 
-	// 		duration: 150,
-	// 		scale: 300
-	// 	},
-	// 	{
-	// 		tex: new THREE.ImageUtils.loadTexture( 'image/textures/diamond.png' ),
-	// 		horizontal: 4, 
-	// 		vertical: 1, 
-	// 		total: 4, 
-	// 		duration: 150,
-	// 		scale: 300
-	// 	},
-	// 	{
-	// 		tex: new THREE.ImageUtils.loadTexture( 'image/textures/toperi.png' ),
-	// 		horizontal: 4, 
-	// 		vertical: 1, 
-	// 		total: 4, 
-	// 		duration: 150,
-	// 		scale: 300
-	// 	},
-	// 	{
-	// 		tex: new THREE.ImageUtils.loadTexture( 'image/textures/dervish-one.png' ),
-	// 		horizontal: 4, 
-	// 		vertical: 1, 
-	// 		total: 4, 
-	// 		duration: 150,
-	// 		scale: 300
-	// 	}
-	// ]
 
 	let animTextures = [
 		{

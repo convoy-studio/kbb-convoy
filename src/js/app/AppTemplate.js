@@ -26,7 +26,9 @@ class AppTemplate extends BaseComponent {
 		dom.event(window, 'mousemove', this.mouseMove)
 
 		this.dot = {
-			el: dom.select('#mouse-dot', document)
+			el: dom.select('#mouse-dot', document),
+			x: -200,
+			y:-200
 		}
 
 		this.scene = new THREE.Scene();
@@ -41,7 +43,7 @@ class AppTemplate extends BaseComponent {
         dom.tree.add(this.element, this.renderer.domElement)
 
         this.raycaster = new THREE.Raycaster();
-        this.mouse = new THREE.Vector2();
+        this.mouse = new THREE.Vector2(500, 500);
         this.intersection = undefined
         this.intersectionCounter = 0
 
@@ -99,12 +101,9 @@ class AppTemplate extends BaseComponent {
         Leap.loop((frame)=> {
         	var hand = frame.hands[0]
 			if(hand) {
-				let size = 50
 				let x = (window.innerWidth * 0.45) + hand.palmPosition[0]
 				let y = (window.innerHeight * 0.9) - hand.palmPosition[1]
-				this.mouse.x = (x / window.innerWidth) * 2 - 1
-				this.mouse.y = -(y / window.innerHeight) * 2 + 1
-				Utils.Translate(this.dot.el, x - (size/2), y - (size/2), 1)
+				this.updateMousePosition(x, y)
 			}
 		});
 
@@ -113,10 +112,19 @@ class AppTemplate extends BaseComponent {
         this.animate()
 		super.componentDidMount()
 	}
-	mouseMove(e) {
+	updateMousePosition(x, y) {
+		const size = 50
+		this.mouse.x = ( x / window.innerWidth ) * 2 - 1;
+		this.mouse.y = - ( y / window.innerHeight ) * 2 + 1;
+		const newX = x - (size >> 1)
+		const newY = y - (size >> 1)
+		this.dot.x += (newX - this.dot.x) * 0.6
+		this.dot.y += (newY - this.dot.y) * 0.6
+		Utils.Translate(this.dot.el, this.dot.x, this.dot.y, 1)
+	}
+ 	mouseMove(e) {
 		e.preventDefault();
-		this.mouse.x = ( e.clientX / window.innerWidth ) * 2 - 1;
-		this.mouse.y = - ( e.clientY / window.innerHeight ) * 2 + 1;
+		this.updateMousePosition(e.clientX, e.clientY)
 	}
 	loadAssets(manifest) {
 		var jsonLoader = new THREE.JSONLoader();

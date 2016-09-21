@@ -24,10 +24,6 @@ export default (material, animTextures)=> {
 	container.dir = Math.random() * 1 > 0.45 ? 1 : -1
 	container.opacity = 0
 
-	// let texture = animTextures[4].tex
-	// // let animator = new TextureAnimator( texture, animTextures[0].horiz, animTextures[0].vert, animTextures[0].total, animTextures[0].duration ); // texture, #horiz, #vert, #total, duration.
-	// let animatedParticle = AnimatedParticle(animContainer, texture, geometry, animator)
-
 	let animator = undefined
 	let geometry = new THREE.PlaneGeometry(100, 100, 1, 1);
 	let animatedParticles = []
@@ -50,7 +46,7 @@ export default (material, animTextures)=> {
 	var resetMesh = () => {
 		let scale = Utils.Rand(0.001, 0.004, 4)
 		container.scale.set(scale, scale, scale)
-		container.velocity.y = Utils.Rand(10, 40, 3)
+		container.velocity.y = Utils.Rand(10, 20, 3)
 		container.offset.x = Math.radians(Utils.Rand(-50, 50, 0))
 		container.offsetUp.x = Utils.Rand(10, 200, 0)
 		container.rotation.x = Math.radians(Utils.Rand(-180, 180, 0))
@@ -75,10 +71,10 @@ export default (material, animTextures)=> {
 			intersection = inter
 
 			if(animState === DOWN) {
-				container.position.y -= container.velocity.y * 0.6
-				container.rotation.x += 0.005
-				container.rotation.y += 0.006
-				container.rotation.z += 0.008
+				container.position.y -= container.velocity.y * 0.5
+				container.rotation.x += 0.002
+				container.rotation.y += 0.003
+				container.rotation.z += 0.005
 				container.position.x += container.offset.x
 				animatedParticle.mesh.material.opacity = 0
 				if(container.position.y < -600) {
@@ -86,7 +82,6 @@ export default (material, animTextures)=> {
 				}
 			} else if(animState === UP) {
 				container.position.y += container.velocity.y * 0.2
-				// container.position.x += container.offsetUp.x * container.dir
 				container.position.x = Math.sin(counter) * container.offsetUp.x
 				container.position.z = Math.cos(counter) * container.offsetUp.x
 				if(container.position.y > 50) container.opacity += (0.001 - container.opacity) * 0.5
