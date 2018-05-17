@@ -1,5 +1,0 @@
-node_modules
-lib/
-*.log
-website/src/flux/docs/
-website/core/metadata.js

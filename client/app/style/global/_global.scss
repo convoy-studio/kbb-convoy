@@ -1,0 +1,79 @@
+html, body {
+  padding: 0;
+  margin: 0;
+  font-family: 'DomaineSansText-Light', Arial, Helvetica, sans-serif;
+}
+
+html {
+  @extend .full;
+  overflow: hidden;
+  position: fixed;
+  body {
+    position: fixed;
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+  }
+  &.scroll {
+    body {
+      position: static;
+      overflow-y: auto;
+      width: 100%;
+      height: auto;
+    }
+    position: static;
+  }
+}
+
+#app-container  {
+  // font smoothing
+  -webkit-font-smoothing: antialiased;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
+
+  // disable text-selection & text cursor
+  // @include user-select(none);
+  cursor: default;
+
+  // overall text params
+  font-size: $FONT_SIZE;
+
+  position: absolute;
+  @extend .full;
+}
+
+#app-template {
+  @extend .full;
+  & > main {
+    position: absolute;
+    @extend .full;
+    @extend .top-left;
+    z-index: 1;
+  }
+}
+
+#base-pager, #pages-container {
+  @extend .full;
+}
+
+#pages-container {
+  position: absolute;
+  z-index: 10;
+  & > div {
+    @extend .full;
+    position: absolute;
+  }
+  .page-wrapper{
+    @extend .full;
+    position: relative;
+  }
+}
+
+#front-block {
+  @extend .full;
+  @extend .top-left;
+  position: fixed;
+  z-index: 999999;
+}
+

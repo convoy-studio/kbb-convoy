@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <title><%= htmlWebpackPlugin.options.meta.title %></title>
+      <meta name="description" content="<%= htmlWebpackPlugin.options.meta.description %>">
+      <meta name="keywords" content="<%= htmlWebpackPlugin.options.meta.keywords %>">
+      <meta name="copyright" content="<%= htmlWebpackPlugin.options.meta.copyright %>" />
+      <meta name="location" content="<%= htmlWebpackPlugin.options.meta.location %>">
+      <meta name="viewport" content="<%= htmlWebpackPlugin.options.meta.viewport %>" />
+      <base href="<%= htmlWebpackPlugin.options.meta.base_prod %>">
+
+      <!-- Facebook meta -->
+      <meta property="og:title" content="<%= htmlWebpackPlugin.options.meta.title %>"/>
+      <meta property="og:image" content="share.jpg"/>
+      <meta property="og:url" content="<%= htmlWebpackPlugin.options.meta.base_prod %>"/>
+      <meta property="og:site_name" content="<%= htmlWebpackPlugin.options.meta.title %>"/>
+
+      <!-- Twitter meta -->
+      <meta name="twitter:card" content="<%= htmlWebpackPlugin.options.meta.twitter_card %>">
+      <meta name="twitter:site" content="<%= htmlWebpackPlugin.options.meta.twitter_site %>">
+      <meta name="twitter:title" content="<%= htmlWebpackPlugin.options.meta.title %>">
+      <meta name="twitter:description" content="<%= htmlWebpackPlugin.options.meta.description %>">
+      <meta name="twitter:image" content="share.jpg">
+
+      <!-- Favicons -->
+      <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+      <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+      <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+      <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+      <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+      <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+      <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+      <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+      <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+      <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+      <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+      <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+      <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+      <link rel="manifest" href="/manifest.json">
+      <meta name="msapplication-TileColor" content="#ffffff">
+      <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+      <meta name="theme-color" content="#ffffff">
+    </head>
+    <body>
+        <!--[if lt IE 7 ]> <div id="app-container" class="ie6"> <![endif]-->
+        <!--[if IE 7 ]>    <div id="app-container" class="ie7"> <![endif]-->
+        <!--[if IE 8 ]>    <div id="app-container" class="ie8"> <![endif]-->
+        <!--[if IE 9 ]>    <div id="app-container" class="ie9"> <![endif]-->
+        <!--[if (gt IE 9)|!(IE)]><!--><div id="app-container"></div> <!--<![endif]-->
+
+        <!-- if the variable of the ENV = 'PREPROD' the url of the files is relative (localhost use) -->
+        <!-- if you want the files to have as base of the url your JS_url_static then change ENV to 'PROD' -->
+        <script type="text/javascript">
+          var ENV = "<%= htmlWebpackPlugin.options.environment %>";
+        </script>
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-113126247-1"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'UA-113126247-1');
+        </script>
+        
+    </body>
+</html>

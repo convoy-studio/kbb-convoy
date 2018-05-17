@@ -1,0 +1,168 @@
+{
+  "posters": [
+    {
+      "info": { 
+        "title": "Ross from Ukraine", 
+        "twitterText": "Ross from Ukraine" 
+      },
+      "gradient": {
+        "colors": [ "0xF36F4C", "0x522F5D", "0xffffff" ]
+      },
+      "media": [
+        {
+          "type": "text",
+          "text": "He",
+          "pos": { "x": 0, "y": 10 },
+          "size": 40
+        },
+        {
+          "type": "text",
+          "text": "is",
+          "pos": { "x": 50, "y": 0 },
+          "size": 10
+        },
+        {
+          "type": "text",
+          "text": "1",
+          "pos": { "x": 75, "y": 0 },
+          "size": 30
+        },
+        {
+          "type": "text",
+          "text": "and",
+          "pos": { "x": 90, "y": 50 },
+          "size": 10
+        },
+        {
+          "type": "text",
+          "text": "only",
+          "pos": { "x": 70, "y": 85 },
+          "size": 30
+        }
+      ]
+    },
+    {
+      "info": { 
+        "title": "Ross from Ukraine", 
+        "twitterText": "Ross from Ukraine" 
+      },
+      "gradient": {
+        "colors": [ "0xF46635", "0xC42404", "0xffffff" ]
+      },
+      "media": [
+        {
+          "type": "image",
+          "filename": "giphy.gif",
+          "pos": { "x": 5, "y": 0 },
+          "size": 40
+        },
+        {
+          "type": "text",
+          "text": "lives",
+          "pos": { "x": 40, "y": 10 },
+          "size": 30
+        },
+        {
+          "type": "text",
+          "text": "on",
+          "pos": { "x": 100, "y": 55 },
+          "size": 10
+        },
+        {
+          "type": "text",
+          "text": "4",
+          "pos": { "x": 20, "y": 70 },
+          "size": 30
+        },
+        {
+          "type": "text",
+          "text": "ever",
+          "pos": { "x": 60, "y": 90 },
+          "size": 10
+        }
+      ]
+    },
+    {
+      "info": { 
+        "title": "Ross from Ukraine", 
+        "twitterText": "Ross from Ukraine" 
+      },
+      "gradient": {
+        "colors": [ "0xF36F4C", "0x522F5D", "0xffffff" ]
+      },
+      "media": [
+        {
+          "type": "text",
+          "text": "He",
+          "pos": { "x": 0, "y": 10 },
+          "size": 40
+        },
+        {
+          "type": "text",
+          "text": "is",
+          "pos": { "x": 50, "y": 0 },
+          "size": 10
+        },
+        {
+          "type": "text",
+          "text": "1",
+          "pos": { "x": 75, "y": 0 },
+          "size": 30
+        },
+        {
+          "type": "text",
+          "text": "and",
+          "pos": { "x": 90, "y": 50 },
+          "size": 10
+        },
+        {
+          "type": "text",
+          "text": "only",
+          "pos": { "x": 70, "y": 85 },
+          "size": 30
+        }
+      ]
+    },
+    {
+      "info": { 
+        "title": "Ross from Ukraine", 
+        "twitterText": "Ross from Ukraine" 
+      },
+      "gradient": {
+        "colors": [ "0xF46635", "0xC42404", "0xffffff" ]
+      },
+      "media": [
+        {
+          "type": "image",
+          "filename": "giphy.gif",
+          "pos": { "x": 5, "y": 0 },
+          "size": 40
+        },
+        {
+          "type": "text",
+          "text": "lives",
+          "pos": { "x": 40, "y": 10 },
+          "size": 30
+        },
+        {
+          "type": "text",
+          "text": "on",
+          "pos": { "x": 100, "y": 55 },
+          "size": 10
+        },
+        {
+          "type": "text",
+          "text": "4",
+          "pos": { "x": 20, "y": 70 },
+          "size": 30
+        },
+        {
+          "type": "text",
+          "text": "ever",
+          "pos": { "x": 60, "y": 90 },
+          "size": 10
+        }
+      ]
+    }
+  ]
+}

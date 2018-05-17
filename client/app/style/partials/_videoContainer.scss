@@ -1,0 +1,8 @@
+.video-container {
+  @extend .full;
+  position: relative;
+  
+  video {
+    position: absolute;
+  }
+}
