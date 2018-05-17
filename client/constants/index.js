@@ -26,6 +26,6 @@ export default {
 
   ENVIRONMENTS: {
     DEV: 'http://localhost:3000/',
-    PROD: `${protocol}//prince2me.com/`
+    PROD: 'http://localhost:3000/'
   }
 }
