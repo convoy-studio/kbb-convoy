@@ -295,19 +295,6 @@ var tasks = {
             // generate source maps in non-production environment
             debug: !production
         });
-        // get all bower components ids and use 'bower-resolve' to resolve
-        // the ids to their full path, which we need for require()
-        packagesHelper.getBowerPackageIds().forEach(function (id) {
-            var resolvedPath = bowerResolve.fastReadSync(id);
-            gutil.log(gutil.colors.black.bgBlue("Bower package", id));
-            b.require(resolvedPath, {
-                // exposes the package id, so that we can require() from our code.
-                // for eg:
-                // require('./vendor/angular/angular.js', {expose: 'angular'}) enables require('angular');
-                // for more information: https://github.com/substack/node-browserify#brequirefile-opts
-                expose: id
-            });
-        });
         // do the similar thing, but for npm-managed modules.
         // resolve path using 'resolve' module
         packagesHelper.getNPMPackageIds().forEach(function (id) {
@@ -327,12 +314,6 @@ var tasks = {
         }
 
         tasks.transform()
-        // mark vendor libraries defined in bower.json as an external library,
-        // so that it does not get bundled with app.js.
-        // instead, we will load vendor libraries from vendor.js bundle
-        packagesHelper.getBowerPackageIds().forEach(function (lib) {
-            bundler.external(lib);
-        });
         // do the similar thing, but for npm-managed modules.
         // resolve path using 'resolve' module
         packagesHelper.getNPMPackageIds().forEach(function (id) {
