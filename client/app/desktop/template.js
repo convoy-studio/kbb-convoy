@@ -11,6 +11,7 @@ import FrontContainer from '../../components/FrontContainer'
 import PagesContainer from '../../components/PagesContainer'
 import CanvasContainer from '../../components/CanvasContainer'
 import detector from '../../utils/environment-detector'
+import raf from 'raf'
 
 export default class AppTemplate extends BaseAppTemplate {
   componentWillMount() {
@@ -33,10 +34,7 @@ export default class AppTemplate extends BaseAppTemplate {
   }
   componentDidMount() {
     WindowActions.resize()
-    let ticker = PIXI.ticker.shared
-    ticker.add(this.update)
-    ticker.stop()
-    setTimeout(AppActions.startTicker)
+    this.update()
     super.componentDidMount()
   }
   setupAnimation() {
@@ -48,6 +46,7 @@ export default class AppTemplate extends BaseAppTemplate {
     this.refs['pages-container'].update()
     this.refs['canvas-container'].update()
     this.refs['front-container'].update()
+    raf(this.update)
   }
   resize() {
     const windowH = WindowStore.Size.h

@@ -14,8 +14,8 @@ const template = {
 export default {
   vendor: [
     'gsap',
-    // path.resolve(__dirname, '..', 'static/libs/import_a_file.js'),
-    'pixi.js',
+    // path.resolve(__dirname, '..', 'static/libs/three.min.js'),
+    'three',
     'dom-hand',
     'react',
     'react-dom'
@@ -80,6 +80,6 @@ export default {
     'React': 'react',
     'ReactDOM': 'react-dom',
     'dom': 'dom-hand',
-    'PIXI': 'pixi.js'
+    'THREE': 'three'
   })
 }

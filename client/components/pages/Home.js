@@ -15,7 +15,6 @@ export default class Home extends Page {
   render() {
     return (
       <div id='home-page' ref='parent' className='page-wrapper'>
-        home
       </div>
     )
   }

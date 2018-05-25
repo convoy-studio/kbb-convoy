@@ -9,6 +9,12 @@ export default {
   REMOVE_FROM_CANVAS: 'REMOVE_FROM_CANVAS',
   START_TICKER: 'START_TICKER',
   STOP_TICKER: 'STOP_TICKER',
+  KEBAB: {
+    BASE: 'BASE',
+    SILVER: 'SILVER',
+    TOMATO: 'TOMATO',
+    PARTICLE: 'PARTICLE'
+  },
   SIDE_BAR_WIDTH: parseInt(sassVars.SIDE_BAR_WIDTH, 10),
   ICON_WIDTH: parseInt(sassVars.ICON_WIDTH, 10),
   ICON_HEIGHT: parseInt(sassVars.ICON_HEIGHT, 10),
@@ -23,7 +29,6 @@ export default {
   MQ_XLARGE: parseInt(sassVars.MQ_XLARGE, 10),
   MQ_XXLARGE: parseInt(sassVars.MQ_XXLARGE, 10),
   BASE_WIDTH: parseInt(sassVars.MQ_XLARGE, 10),
-
   ENVIRONMENTS: {
     DEV: 'http://localhost:3000/',
     PROD: 'http://localhost:3000/'

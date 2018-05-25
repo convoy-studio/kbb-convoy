@@ -112,6 +112,13 @@ class Utils {
       strParam = 'width=' + intWidth + ',height=' + intHeight + ',resizable=' + strResize,
       objWindow = window.open(href, strTitle, strParam).focus()
   }
+  static loadTexture(url) {
+    const uri = 'assets/images/textures/' + url
+    const texture = new THREE.TextureLoader().load(uri)
+    texture.wrapS = texture.wrapT = THREE.RepeatWrapping
+    texture.anisotropy = 16
+    return texture
+  }
 }
 
 export default Utils

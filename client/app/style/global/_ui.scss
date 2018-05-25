@@ -5,6 +5,7 @@
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   -webkit-user-drag: none;
   outline: 0;
+  cursor: none;
 }
 
 *,
@@ -126,8 +127,31 @@ canvas#canvas-container {
 
 #top-container {
   position: absolute;
-  width: 100%;
-  height: 100%;
   z-index: 2;
-  background-color: white;
+}
+
+#mouse-dot {
+  $size: 50px;
+  position: absolute;
+  width: $size;
+  height: $size;
+  z-index: 9999;
+  @include opacity(0.5);
+}
+
+#messages {
+  position: absolute;
+  // font-family: Eskindar;
+  color: white;
+  font-size: 200px;
+  text-transform: uppercase;
+  & > div {
+      position: absolute;
+  }
+}
+
+.background {
+  position: fixed;
+  z-index: -1;
+  // background: 
 }

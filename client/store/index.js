@@ -15,13 +15,33 @@ const appContainer = dom.select('#app-container')
 const _getAppData = () => {
   return _data
 }
-const _getResources = () => {
-  return _data.assets
+const _getTexture = (id) => {
+  let texture
+  for (let index = 0; index < _data.textures.length; index++) {
+    const element = _data.textures[index]
+    if (id === element.id) {
+      texture = element.texture
+      break
+    }
+  }
+  return texture
+}
+const _getGeometry = (id) => {
+  let geometry
+  for (let index = 0; index < _data.geometries.length; index++) {
+    const element = _data.geometries[index]
+    if (id === element.id) {
+      geometry = element.geometry
+      break
+    }
+  }
+  return geometry
 }
 
 const Store = assign({}, EventEmitter2.prototype, {
-  resources: _getResources,
   appData: _getAppData,
+  getTexture: _getTexture,
+  getGeometry: _getGeometry,
   basePath: () => {
     return AppConstants.ENVIRONMENTS[ENV]
   },
