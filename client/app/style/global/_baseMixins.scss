@@ -58,7 +58,7 @@
     @return $string;
 }
 
-@mixin font-face($name, $path, $weight: normal, $style: normal, $exts: woff2 woff ttf svg) {
+@mixin font-face($name, $path, $weight: normal, $style: normal, $exts: woff ttf) {
     $src: null;
  
     $extmods: (

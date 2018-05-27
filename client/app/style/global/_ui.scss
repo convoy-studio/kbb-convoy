@@ -155,3 +155,14 @@ canvas#canvas-container {
   z-index: -1;
   // background: 
 }
+
+#messages {
+  position: absolute;
+  // font-family: 'Eskindar';
+  color: white;
+  font-size: 200px;
+  text-transform: uppercase;
+  & > div {
+    position: absolute;
+  }
+}

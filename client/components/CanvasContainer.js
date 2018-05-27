@@ -7,6 +7,7 @@ import Utils from '../utils'
 import translate from 'css3-translate'
 import Leap from 'leapjs'
 import rproport from 'resize-position-proportionally'
+import messages from './Messages'
 
 export default class CanvasContainer extends React.Component {
   constructor(props) {
@@ -18,10 +19,21 @@ export default class CanvasContainer extends React.Component {
     AppStore.on(AppConstants.ADD_TO_CANVAS, this.addToCanvas)
     AppStore.on(AppConstants.REMOVE_FROM_CANVAS, this.removeFromCanvas)
     this.loaderCounter = 0
+    this.messagesAreActive = true
   }
   render() {
     return (
       <div style={{ height: 0}} ref='parent'>
+        <div id="messages">
+          <div className="msg">Great!</div>
+          <div className="msg">Awesome!</div>
+          <div className="msg">Sweet!</div>
+          <div className="msg">Yummmm!</div>
+          <div className="msg">Samurai!</div>
+          <div className="msg">Juicy!</div>
+          <div className="msg">Oh la la!</div>
+          <div className="msg">Emporter!</div>
+        </div>
         <div id='mouse-dot'>
           <svg width="100%" viewBox="0 0 101.235 101.235">
             <circle fill="#FFFFFF" stroke="#000000" strokeWidth="0" strokeMiterlimit="10" cx="50.617" cy="50.617" r="47.279"/>
@@ -53,6 +65,7 @@ export default class CanvasContainer extends React.Component {
     this.intersectionCounter = 0
     this.kebab = new THREE.Object3D()
     this.scene.add(this.kebab)
+    this.messages = messages(dom.select('#messages', document))
     this.meatParticles = meatParticles(this.scene)
     const ambientL = new THREE.AmbientLight( 0xffffff )
     const directionalLight = new THREE.DirectionalLight( 0xffffff, 0.7 )
@@ -81,6 +94,7 @@ export default class CanvasContainer extends React.Component {
         let x = (window.innerWidth * 0.45) + hand.palmPosition[0]
         let y = (window.innerHeight * 0.9) - hand.palmPosition[1]
         this.updateMousePosition(x, y)
+        this.messageActivation()
       }
     })
   }
@@ -146,7 +160,15 @@ export default class CanvasContainer extends React.Component {
     geometry.applyMatrix( new THREE.Matrix4().multiplyScalar( 0.5 ) )
   }
   mousemove = () => {
+    this.messageActivation()
     this.updateMousePosition(WindowStore.Mouse.x, WindowStore.Mouse.y)
+  }
+  messageActivation = () => {
+    this.messagesAreActive = true
+    clearTimeout(this.mouseMoveTimeout)
+    this.mouseMoveTimeout = setTimeout(() => {
+      this.messagesAreActive = false
+    }, 3000)
   }
   updateMousePosition = (x, y) => {
     const size = 50
@@ -170,8 +192,8 @@ export default class CanvasContainer extends React.Component {
       this.intersection = ( intersections.length ) > 0 ? intersections[ 0 ] : null
     }
     if (this.intersection) this.intersectionCounter += 1
-    if (this.intersectionCounter > 350) {
-      // this.messages.showMsg()
+    if (this.intersectionCounter > 350 ) {
+      if (this.messagesAreActive) this.messages.showMsg()
       this.intersectionCounter = 0
     }
     this.meatParticles.update(this.intersection)
@@ -192,6 +214,6 @@ export default class CanvasContainer extends React.Component {
     this.refs.background.style.left = `${resizeP.left}px`
     // this.renderer.domElement.style.width = '100%'
     // this.renderer.domElement.style.height = '100%'
-    // this.messages.resize()
+    this.messages.resize()
   }
 }
