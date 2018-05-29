@@ -145,8 +145,15 @@ canvas#canvas-container {
   color: white;
   font-size: 200px;
   text-transform: uppercase;
+  text-align: center;
+  width: 100%;
   & > div {
-      position: absolute;
+    text-align: center;
+    position: absolute;
+    width: 50%;
+    left: 0;
+    top: 0;
+    // transform: translateX(-50%);
   }
 }
 

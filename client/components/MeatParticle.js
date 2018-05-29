@@ -66,20 +66,20 @@ export default (material, animTextures) => {
       counter += force
       intersection = inter
       if (animState === DOWN) {
-        container.position.y -= container.velocity.y * 0.5
+        container.position.y -= container.velocity.y * 0.9
         container.rotation.x += 0.002
         container.rotation.y += 0.003
         container.rotation.z += 0.005
         container.position.x += container.offset.x
         animatedParticle.mesh.material.opacity = 0
-        if (container.position.y < -1000) {
+        if (container.position.y < -1100) {
           animState = UP
         }
       } else if (animState === UP) {
-        container.position.y += container.velocity.y * 0.5
+        container.position.y += container.velocity.y * 1
         container.position.x = Math.sin(counter) * container.offsetUp.x
         container.position.z = Math.cos(counter) * container.offsetUp.x
-        if (container.position.y > 50) container.opacity += (0.001 - container.opacity) * 0.8
+        if (container.position.y > -400) container.opacity += (0.001 - container.opacity) * 1.6
         container.rotation.x = 0
         container.rotation.y = 0
         container.rotation.z = 0

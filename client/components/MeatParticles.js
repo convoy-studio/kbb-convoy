@@ -20,7 +20,7 @@ export default (container)=> {
       vertical: 1,
       total: 4,
       duration: 150,
-      scale: 140
+      scale: 300
     }
   ]
   let particles = []

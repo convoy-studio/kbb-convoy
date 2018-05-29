@@ -25,21 +25,36 @@ export default class CanvasContainer extends React.Component {
     return (
       <div style={{ height: 0}} ref='parent'>
         <div id="messages">
-          <div className="msg">Great!</div>
-          <div className="msg">Awesome!</div>
-          <div className="msg">Sweet!</div>
-          <div className="msg">Yummmm!</div>
-          <div className="msg">Samurai!</div>
-          <div className="msg">Juicy!</div>
-          <div className="msg">Oh la la!</div>
-          <div className="msg">Emporter!</div>
+          <div className="msg">It is a certain</div>
+          <div className="msg">It is decidedly so</div>
+          <div className="msg">Without a doubt</div>
+          <div className="msg">Yes definitely</div>
+          <div className="msg">You may rely on it</div>
+          <div className="msg">You can count on it</div>
+          <div className="msg">As I see it, yes</div>
+          <div className="msg">Most likely</div>
+          <div className="msg">Outlook good</div>
+          <div className="msg">Yes</div>
+          <div className="msg">Signs point to yes</div>
+          <div className="msg">Absolutely</div>
+          <div className="msg">Reply hazy try again</div>
+          <div className="msg">Ask again later</div>
+          <div className="msg">Better not tell you now</div>
+          <div className="msg">Cannot predict now</div>
+          <div className="msg">Concentrate and ask again</div>
+          <div className="msg">Don't count on it</div>
+          <div className="msg">My reply is no</div>
+          <div className="msg">My sources say no</div>
+          <div className="msg">Outlook not so good</div>
+          <div className="msg">Very doubtful</div>
+          <div className="msg">Chances aren't good</div>
         </div>
         <div id='mouse-dot'>
           <svg width="100%" viewBox="0 0 101.235 101.235">
             <circle fill="#FFFFFF" stroke="#000000" strokeWidth="0" strokeMiterlimit="10" cx="50.617" cy="50.617" r="47.279"/>
           </svg>
         </div>
-        <div className="background"><img ref='background' src="assets/images/textures/image.png"/></div>
+        {/* <div className="background"><img ref='background' src="assets/images/textures/image.png"/></div> */}
         <div className="canvas-holder" ref="canvasHolder"></div>
       </div>
     )
@@ -53,11 +68,12 @@ export default class CanvasContainer extends React.Component {
     }
     this.scene = new THREE.Scene()
     this.camera = new THREE.PerspectiveCamera( 75, WindowStore.Size.w / WindowStore.Size.h, 1, 10000 )
-    this.camera.position.z = 1400
-    this.camera.position.y = -100
-    this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true })
+    this.camera.position.z = 1600
+    this.camera.position.y = -50
+    this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false })
     this.renderer.setSize( WindowStore.Size.w, WindowStore.Size.h )
     this.renderer.setPixelRatio( window.devicePixelRatio )
+    this.scene.background = new THREE.Color(0xce090f)
     dom.tree.add(this.refs.canvasHolder, this.renderer.domElement)
     this.raycaster = new THREE.Raycaster()
     this.mouse = new THREE.Vector2(500, 500)
@@ -91,8 +107,10 @@ export default class CanvasContainer extends React.Component {
     Leap.loop((frame) => {
       const hand = frame.hands[0]
       if (hand) {
-        let x = (window.innerWidth * 0.45) + hand.palmPosition[0]
-        let y = (window.innerHeight * 0.9) - hand.palmPosition[1]
+        const xn = ((hand.palmPosition[0] / window.innerWidth) * 1)
+        const yn = 1 - ((hand.palmPosition[1] / window.innerHeight) * 1) - 0.1
+        let x = (window.innerWidth * xn) + (window.innerWidth * 0.5)
+        let y = window.innerHeight * yn
         this.updateMousePosition(x, y)
         this.messageActivation()
       }
@@ -161,6 +179,7 @@ export default class CanvasContainer extends React.Component {
   }
   mousemove = () => {
     this.messageActivation()
+    this.dotActivation()
     this.updateMousePosition(WindowStore.Mouse.x, WindowStore.Mouse.y)
   }
   messageActivation = () => {
@@ -170,14 +189,26 @@ export default class CanvasContainer extends React.Component {
       this.messagesAreActive = false
     }, 3000)
   }
+  dotActivation = () => {
+    this.dotIsActive = true
+    clearTimeout(this.dotActiveTimeout)
+    this.dotActiveTimeout = setTimeout(() => {
+      const posX = Utils.rand(100, 300)
+      const posY = Utils.rand(100, window.innerHeight - 100)
+      this.dot.x = posX
+      this.dot.y = posY
+      this.updateMousePosition(this.dot.x, this.dot.y)
+      this.dotIsActive = false
+    }, 10000)
+  }
   updateMousePosition = (x, y) => {
     const size = 50
     this.mouse.x = ( x / window.innerWidth ) * 2 - 1
     this.mouse.y = - ( y / window.innerHeight ) * 2 + 1
     const newX = x - (size >> 1)
     const newY = y - (size >> 1)
-    this.dot.x += (newX - this.dot.x) * 0.6
-    this.dot.y += (newY - this.dot.y) * 0.6
+    this.dot.x += (newX - this.dot.x) * 0.3
+    this.dot.y += (newY - this.dot.y) * 0.3
     translate['3d'](this.dot.el, this.dot.x, this.dot.y, 1)
   }
   addToCanvas(child) {
@@ -208,10 +239,10 @@ export default class CanvasContainer extends React.Component {
     this.renderer.setPixelRatio( 0.9 )
     this.renderer.setSize( windowW, windowH )
     const resizeP = rproport(windowW, windowH, 2048, 1024)
-    this.refs.background.style.width = `${resizeP.width}px`
-    this.refs.background.style.height = `${resizeP.height}px`
-    this.refs.background.style.top = `${resizeP.top}px`
-    this.refs.background.style.left = `${resizeP.left}px`
+    // this.refs.background.style.width = `${resizeP.width}px`
+    // this.refs.background.style.height = `${resizeP.height}px`
+    // this.refs.background.style.top = `${resizeP.top}px`
+    // this.refs.background.style.left = `${resizeP.left}px`
     // this.renderer.domElement.style.width = '100%'
     // this.renderer.domElement.style.height = '100%'
     this.messages.resize()
